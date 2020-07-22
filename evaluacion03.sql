@@ -1,5 +1,6 @@
 CREATE TABLE `usuario` (
-  `idusuario` int(11) NOT NULL,
+  `idusuario` int(11) NOT NULL AUTO_INCREMENT,
+  `run` varchar(12) NOT NULL,
   `password` varchar(45) NOT NULL,
   PRIMARY KEY (`idusuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -43,4 +44,10 @@ insert into estado (nombre)
 values ('Pendiente'),('Confirmado'), ('Rechazado');
 
 insert into usuario
-values (123, 'eva03');
+values (1, '123456789', 'eva03');
+
+create or replace view v_pedido as
+select p.*, e.nombre as nombre_estado from pedido p inner join estado e on p.idestado = e.idestado order by idpedido;
+
+create or replace view v_pedido_productos as
+select pp.idpedido, pp.cantidad, pp.precio_unitario, p.* from pedido_producto pp inner join producto p on pp.idproducto = p.idproducto;	

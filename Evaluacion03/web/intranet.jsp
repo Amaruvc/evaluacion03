@@ -22,6 +22,11 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
         <title>Intranet</title>
     </head>
+    <%
+        if (session.getAttribute("usuario") == null) {
+            response.sendRedirect("index.jsp?msj=Acceso denegado");
+        }
+    %>
     <body class="has-navbar-fixed-top">
         <nav class="navbar is-info is-fixed-top" role="navigation" aria-label="main navigation">
             <div id="navbarBasicExample" class="navbar-menu">
